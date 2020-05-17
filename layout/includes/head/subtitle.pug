@@ -55,7 +55,7 @@ if theme.subtitle.enable
                 backSpeed: 50,
               })
             } else {
-              document.getElementById('subtitle').innerHTML = data.hitokoto
+              document.getElementById('subtitle').innerHTML = data.hitokoto + "<br>「 " + data.from + " 」</br>"
             }
           })
           .catch(function (err) {

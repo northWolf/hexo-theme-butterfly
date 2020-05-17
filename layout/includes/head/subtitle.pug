@@ -44,9 +44,18 @@ if theme.subtitle.enable
           })
           .then(function (data) {
             if (subtitleEffect) {
-              var from = "<br>「 " + data.from + " 」</br>"
+              var from = ""
+              if(data.from != null)
+              {
+                  from = "</br>「 " + data.from + " 」"
+              } 
+              var fromWho = ""
+              if(data.from_who != null)
+              {
+                  fromWho = "</br>" + data.from_who
+              }
               var sub = '!{theme.subtitle.sub}'.length == 0 ? new Array() : '!{theme.subtitle.sub}'.split(',')
-              var both = sub.unshift(data.hitokoto + from)
+              var both = sub.unshift(data.hitokoto + fromWho + from)
               var typed = new Typed('#subtitle', {
                 strings: sub,
                 startDelay: 300,
@@ -55,7 +64,17 @@ if theme.subtitle.enable
                 backSpeed: 50,
               })
             } else {
-              document.getElementById('subtitle').innerHTML = data.hitokoto + "<br>「 " + data.from + " 」</br>"
+              var from = ""
+              if(data.from != null)
+              {
+                    from = "</br>「 " + data.from + " 」"
+              } 
+              var fromWho = ""
+              if(data.from_who != null)
+              {
+                   fromWho = "</br>" + data.from_who
+              }
+              document.getElementById('subtitle').innerHTML = data.hitokoto + fromWho + from
             }
           })
           .catch(function (err) {
